@@ -28,4 +28,4 @@ if contador == 3:
 elif contador == 2:
     print("Las palabras riman un poco")
 else:
-    print("No rima un sorete")
+    print("No rima")
