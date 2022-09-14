@@ -1,0 +1,67 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="{% static 'css/styles.css' %}"> 
+        <link rel="icon" href="{% static 'images/logo.png' %}"> 
+    </head> 
+    <title>
+        Articles
+    </title>
+</head>
+
+<body>
+    {% block header %}
+    <header>
+        <h1>Bienvenidos a mi sitio web!</h1>
+        <img src="{% static 'images/logo.png' %}" alt="logo_django" >
+    </header>
+    {% endblock %}
+
+    <div id="message">
+        <p>
+            Este sitio ha sido creado con la finalidad de aprender la tecnología Django.
+        </p>
+    </div>
+    <div class="box" id="languages">      
+        <h3> Articulos </h3>
+        <table class="table table-bordered border-primary">
+            {% for article in articles %}
+
+                {% if article.public == 1 %}
+                    {% comment %} <h5>{{article.id}}. {{article.title}}</h5>
+                    <p>
+                        {{article.description}}
+                        
+                        <span>
+                            {{article.cratead_at}}
+                        </span>
+                        <a href="{% url 'delete' article.id %}"> Eliminar </a>
+                        
+
+                    </p>
+                    <hr/> {% endcomment %}
+                    
+                        <tr>
+                            <td id="articleID" >{{article.id}}   </td>               
+                            <td scope="col">  {{article.title}}</td>               
+                            <td>{{article.description}}</td>
+                            <td>{{article.cratead_at}}</td>
+                            <td> <a href="{% url 'delete' article.id %}"> Eliminar </a> </td>    
+                        </tr>
+                    
+                {% endif %}
+            {% endfor %}
+        </table>
+
+        
+    </div>
+
+</body>

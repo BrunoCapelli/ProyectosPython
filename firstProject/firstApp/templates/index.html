@@ -1,0 +1,77 @@
+{% block head%}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="{% static 'css/styles.css' %}"> 
+        <link rel="icon" href="{% static 'images/logo.png' %}"> 
+    </head> 
+    <title>
+        Home
+    </title>
+</head>
+{% endblock %}
+<body>
+    {% block header %}
+    <header>
+        <h1>Bienvenidos a mi sitio web!</h1>
+        <img src="{% static 'images/logo.png' %}" alt="logo_django" >
+    </header>
+    {% endblock %}
+    
+    {% block main %}
+    <main>
+        {% comment "Comentario de Django" %}{% endcomment %}
+        <div id="message">
+            <p>
+                Este sitio ha sido creado con la finalidad de aprender la tecnología Django.
+            </p>
+
+        </div>
+        <div class="box" id="languages">      
+            <h3> Lenguajes de programación </h3>
+            <ul>
+                {% for lenguaje in lenguajes %}
+                    <li> {{lenguaje}} </li>
+                    {% empty %}
+                    <li>Sin datos.</li>
+                    {% endfor %}
+                </ul>  
+        </div>
+
+        <div class="box">
+            <h3>Opciones disponibles: {{lenguajes|length}}</h3>
+            <form action="">
+                <select name="lenguajeProgramacion" id="">
+                        {% for lenguaje in lenguajes %}
+                            <option value="{{lenguaje|lower}}">{{lenguaje}}</option>
+                        {% empty %}
+                        <option value="empty">Sin datos</option>
+                        {% endfor %}
+                </select>
+    
+            </form>
+            
+        </div>
+            
+    {% endblock %}
+
+
+
+    </main>
+    <footer>
+        <h2>{{title}}</h6>
+        <p> {{argumento}} </p>
+        <h4>
+            This site was make by Bruno Capelli &copy;
+        </h4>
+    </footer>
+</body>
+</html>
